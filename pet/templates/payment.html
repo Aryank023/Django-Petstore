@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+{% extends 'navbar.html' %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background-size: cover;
+            font-family: 'Lato', sans-serif;
+            color: rgba(116, 116, 116, 0.667);
+            background: linear-gradient(140deg, #fff, 50%, #BA68C8);
+
+        }
+
+        .container-fluid {
+            margin-top: 200px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 7px;
+
+        }
+
+        .small {
+            letter-spacing: 0.5px !important;
+        }
+
+        .card-1 {
+            box-shadow: 2px 2px 10px 0px rgb(190, 108, 170);
+        }
+
+        hr {
+            background-color: rgba(248, 248, 248, 0.667);
+        }
+
+
+        .bold {
+            font-weight: 500;
+        }
+
+        .change-color {
+            color: #AB47BC !important;
+        }
+
+        .card-2 {
+            box-shadow: 1px 1px 3px 0px rgb(112, 115, 139);
+
+        }
+
+        .fa-circle.active {
+            font-size: 8px;
+            color: #AB47BC;
+        }
+
+        .fa-circle {
+            font-size: 8px;
+            color: #aaa;
+        }
+
+        .rounded {
+            border-radius: 2.25rem !important;
+        }
+
+
+        .progress-bar {
+            background-color: #AB47BC !important;
+        }
+
+
+        .progress {
+            height: 5px !important;
+            margin-bottom: 0;
+        }
+
+        .invoice {
+            position: relative;
+            top: -70px;
+        }
+
+        .Glasses {
+            position: relative;
+            top: -12px !important;
+        }
+
+        .card-footer {
+            background-color: #AB47BC;
+            color: #fff;
+        }
+
+        h2 {
+            color: rgb(78, 0, 92);
+            letter-spacing: 2px !important;
+        }
+
+        .display-3 {
+            font-weight: 500 !important;
+        }
+
+        @media (max-width: 479px) {
+            .invoice {
+                position: relative;
+                top: 7px;
+            }
+
+            .border-line {
+                border-right: 0px solid rgb(226, 206, 226) !important;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            h2 {
+                color: rgb(78, 0, 92);
+                font-size: 17px;
+            }
+
+            .display-3 {
+                font-size: 28px;
+                font-weight: 500 !important;
+            }
+        }
+
+        .card-footer small {
+            letter-spacing: 7px !important;
+            font-size: 12px;
+        }
+
+        .border-line {
+            border-right: 1px solid rgb(226, 206, 226)
+        }
+    </style>
+</head>
+
+<body>
+    {% block myblock %}
+
+
+    <section>
+        <div class="container-fluid my-5  d-flex  justify-content-center">
+            <div class="card card-1">
+                <div class="card-header bg-white">
+                    <div class="media flex-sm-row flex-column-reverse justify-content-between  ">
+                        <div class="col my-auto">
+                            <h4 class="mb-0" style="color: black;">Thanks for your Order,<span
+                                    class="change-color">{{session}}</span> !</h4>
+                        </div>
+                        <div class="col-auto text-center  my-auto pl-0 pt-sm-4"> <img
+                                src="https://logowik.com/content/uploads/images/black-circle-pet-shop5686.logowik.com.webp"
+                                width="155" height="100"> </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    {% for i in cartobj %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="card card-2" style="border: white;">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="sq align-self-center "> <img
+                                                class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
+                                                src="{{i.pid.image.url}}" width="135" height="135" /> </div>
+                                        <div class="media-body my-auto text-right">
+                                            <div class="row  my-auto flex-column flex-md-row">
+                                                <div class="col my-auto">
+                                                    <h6 class="mb-0">{{i.pid.name}}</h6>
+                                                </div>
+                                                <div class="col-auto my-auto"> <small>{{i.pid.breeds}} </small></div>
+                                                <div class="col my-auto"> <small>Age : {{i.pid.age}}</small></div>
+                                                <div class="col my-auto"> <small>Qty : {{i.quantity}}</small></div>
+                                                <div class="col my-auto">
+                                                    <h6 class="mb-0">&#8377;{{i.totalamount}}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br>
+
+                                    <hr class="my-3 " style="background-color: white;">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% endfor %}
+
+                    <div class="card-footer">
+                        <div class="jumbotron-fluid">
+                            <div class="row justify-content-between ">
+                                <div class="col-sm-auto col-auto my-auto">
+                                    <!-- <img src="https://logowik.com/content/uploads/images/black-circle-pet-shop5686.logowik.com.webp" width="155" height="100"> -->
+                                </div>
+                                <div class="col-auto my-auto ">
+                                    <h6 class="mb-0 font-weight-bold">TOTAL PAID</h6>
+                                </div>
+                                <div class="col-auto my-auto ml-auto">
+                                    <h6 class="display-5 ">&#8377; {{totalbill}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+    </section>
+
+    <section class="order-form m-4">
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-12 px-4">
+                    <h1> Order Form</h1>
+                    <span>Enter you details</span>
+                    <hr class="mt-1" />
+                </div>
+
+                <div class="col-12">
+                    <div class="row mx-4">
+                        <div class="col-sm-6">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="text" name="firstname">Name : {{orderobj.firstname}}
+                                    {{orderobj.lastname}}</label>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3 mx-4">
+                        <div class="col-12">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="number" name="phoneno">Phone number :{{orderobj.phoneno}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mx-4">
+                        <div class="col-12">
+                            <label class="order-form-label">Address : </label>
+                        </div>
+                        <div class="col-12">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="text" name="address">{{orderobj.address}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mt-2 pe-sm-2">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="text" name="city">City : {{orderobj.city}}</label>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mt-2 ps-sm-0">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="text" name="state">State : {{orderobj.state}}</label>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mt-2 pe-sm-2">
+                            <div data-mdb-input-init class="form-outline">
+                                <label type="text" name="pincode">Pin Code : {{orderobj.pincode}}</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                            <div class="btn_container">
+                                <!-- Payment Button -->
+                                <button class="btn btn-success" id="pay-btn">Pay using Razor Pay</button>
+                              </div>
+                            
+                         
+                           
+                          <!-- Razorpay's Javascript code. -->
+                          <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                          <script>
+                            var options = {
+                               
+                              // Enter the Key ID generated from the Dashboard
+                              key: "rzp_test_TSDwRw40jVay6v", 
+                              amount: 100, 
+                              currency: "INR",
+                              name: "Pet Store", 
+                               
+                              // Pass the `id` obtained
+                               
+                              "handler": function(response) {
+              console.log("success");
+              
+  
+              window.location.href = `http://localhost:8000/paymentsuccess?session={{session}}&order_id={{orderobj.ordernumber}}&payment_id=${response.razorpay_payment_id}`
+                              }
+                            };
+                             
+                            // initialise razorpay with the options.
+                            var rzp1 = new Razorpay(options);
+                             
+                            // add event listener to the payment button.
+                            document.getElementById("pay-btn").onclick = function (e) {
+                              rzp1.open();
+                              e.preventDefault();
+                            };
+                          </script>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% endblock %}
+</body>
+
+</html>
